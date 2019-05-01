@@ -1,0 +1,192 @@
+links
+	: https://github.com/joey711/phyloseq/issues
+	: https://github.com/benjjneb/dada2/issues
+getting help
+	: phyloseq: tutorials, vignettes, F1000 article, google search, search 
+	: joey711/phyloseq/issues/
+	:
+	: dada2: tutorials, R workshops, F1000 article, google search, search 
+	: https://github.com/benjjneb/dada2/issues
+Reference sequences with dada2 + phyloseq
+	: #dada2 #phyloseq #amplicon
+	:
+	: Have one page with tips about how to take reference sequences in and out
+	: of phyloseq and take advantage of the refseq format.
+	Dada2 issue #613
+		: > https://github.com/benjjneb/dada2/issues/613
+	Phyloseq issues #1111 and #1114
+		: #1111 asked how to save the references sequences as a fasta when have
+		: these as a column in a csv
+		:
+		: #1114 asked how to save the reference sequences from a phyloseq object
+		: and to include the taxonomy as a semi-colon delimited string in the
+		: fasta sequence headers along with the ASV/OTU name
+		:
+		: Combining my advice from these two issues with DADA2 #613
+		: would be a nice start to a page on reference sequences
+		:
+		: https://github.com/joey711/phyloseq/issues/1111
+		: https://github.com/joey711/phyloseq/issues/1114
+	illustration of the refseq(ps) object
+		: might explain a bit about how XStringSet objects work, how to write to
+		: fasta files, how to create them, how to get the sequences as characters
+		: or tibbles (using `as.charater` and `enframe`)
+Importing data to phyloseq
+	Issue #1108
+		: https://github.com/joey711/phyloseq/issues/1108
+		:
+		: This issue motivates examples of 
+		: - show how to get a dataframe of sample metadata to feed to `sample_data`
+		:   when the metadata is encoded in the sample names.
+		: - show how to parse an aribtrary taxonomy format into a tax table; and
+		:   perhaps give some examples of different formats that people might
+		:   encounter, where various regex patterns are needed; link to a good
+		:   tutorial on stringi / stringr / regex
+	Issue 1106 - adding additional sample data
+		: Has additional sample metadata as a csv. In this case, I suggested
+		: creating a new `sample_data` object and then merging with
+		: `merge_phyloseq`, as that should do the appropriate checking of the
+		: sample names matching and doesn't require reordering the sample names.
+		: 
+		: I can also point to joins in r4ds as an approach for doing this in
+		: general (if want to learn more data science concepts
+		:
+		: And can also give the e.g. of adding a column with
+		: `sample_data(ps)$New_col <- ...` that can be useful in certain cases.
+		: E.g., if want to keep track of read depth, or alpha diversity, or
+		: make a modified version of an existing variable. Might also mention the
+		: base R `transform` function, though need to check that this actually
+		: works with sample_data objects.
+	https://github.com/joey711/phyloseq/issues/1094
+	QIIME2 .qza objects
+		: unzip, and find the underlying data as biom, fasta, and tax table, and
+		: import into phyloseq.
+		:
+		: link to QIIME2 docs; and google what other info / tutorials on QIIME2
+		: to phyloseq are available elsewhere.
+Plots
+	Alpha diversity and richness
+		https://github.com/joey711/phyloseq/issues/1105
+			: I posted an example of how to calculate alpha diversity indices
+			: for each taxonomic rank. However, I think what they wanted was
+			: something like the number of OTUs in each phylum and each sample---or
+			: maybe just the number of OTUs in each phylum, combining all samples.
+	bar plots
+		https://github.com/joey711/phyloseq/issues/1102
+			: wanted to sort the samples by total abundance
+		https://github.com/joey711/phyloseq/issues/1100
+			: wanted to sort taxa by their mean abundance across samples
+		https://github.com/joey711/phyloseq/issues/1098
+			: question was about removing space when using faceting; answer was
+			: using the scales arg
+		https://github.com/joey711/phyloseq/issues/1090
+			: same basic issue as 1098
+		https://github.com/joey711/phyloseq/issues/1089
+			: understanding how to use plot_bar x option, and about combining
+			: samples for making a barplot
+	ordinations
+		https://github.com/joey711/phyloseq/issues/1067
+			: how to label taxa w/ plot_ordination
+			:
+			: answer - first add an OTU column to the tax_table, unless phyloseq
+			: adds this feature to the plot_ord.. function.
+		https://github.com/joey711/phyloseq/issues/1087
+			: plotting a subset of taxa on a "biplot"
+			:
+			: I gave two ways to do this in the issue.  Perhaps should show more
+			: extensively how to create the ordination by hand? Could start by using
+			: "justDF" to get the df, then showing how to use this to get the
+			: ordination.
+	general principles of plots w/ phlyoseq: ggplot2
+		converting variables to factors to achieve desired order
+		building the ggplot call yourself when you want complete control
+		adding on geoms, theme specs, scales (incl. colors), facets, ...
+		understanding what happens when you set x to something
+			: e.g. in issue 1089
+other issues
+	https://github.com/joey711/phyloseq/issues/1099
+		: problem here requires basic ability to inspect objects and figure out
+		: what they have, and giving more information when asking for help
+data filtering / preprocessing
+	https://github.com/joey711/phyloseq/issues/1093
+		: Gives some examples of types of things we might want to show how to do.
+		: Could give e.g.s of how to do these w/ phyloseq, and also with dplyr (on
+		: psmelted tibbles)
+	https://github.com/joey711/phyloseq/issues/1092
+		: question was a use case for subset_samples
+	1088: how to zero-out specific OTUs from specific samples
+		: https://github.com/joey711/phyloseq/issues/1088
+		:
+		: Question - What happens if we set these as NA? Will phyloseq handle the
+		: NAs appropriately when e.g. calling tax_glom? Are all phyloseq functions
+		: designed to allow this, and is this documented anywhere?
+going from phyloseq to other packages
+	issue 1080: Phyloseq file to vegan for DBRDA
+		: https://github.com/joey711/phyloseq/issues/1080
+		:
+		: wanted a data.frame of the otu_table, rather than a matrix. (I wonder if
+		: they really needed a dataframe though)
+combining samples
+	: how one does this depends on goals and assumptions. Could give some e.g.s
+	: One reasonable use case is #1088
+using psmelt
+	issue 1085 - standard deviation of proportion of taxon across samples
+		: 
+Taxonomy
+	: including issues such as aggregation; perhaps lump these with data import?
+	: or maybe keep sepate)
+	Warning about assuming a taxonomic identifier is unique
+		: e.g. https://github.com/joey711/phyloseq/issues/1085
+		:
+		: and another thread I posted in a long time ago.
+		:
+		: consider giving a better way of checking this
+		:
+		: can also show a safer(?) way to rename taxa w/ taxa_names
+	https://github.com/joey711/phyloseq/issues/1077
+		: #alpha-divesity #tax-glom #rarefy
+		:
+		: question about tax glom before/after rarefying and what tax level to do
+		: alpha diversity analysis. Good motivation for checking the % of assigned
+		: reads at each rank and the % of assigned ASVs at each rank; and looking
+		: at alpha diversity at each tax rank.
+common mistakes
+	Using Bray-Curtis on (unrarified) read counts instead of proportions
+	Not realizing a tax identifier isn't unique (in some tax systems)
+		: e.g. Clostridium in NCBI
+		:
+		: should check if silva + gtdb avoid this issue
+merging phyloseq objects / datasets
+	: I don't have much experience with this, but there are a range of questions
+	: about it we could try to draw from.
+	:
+	: Examples include - 
+	: Merging data from different labs but the same region, so need to check if
+	: ASVs agree (MBQC example where realized needed to trim an extra 1-2 bps)
+	: (though this is pretty niche and probably not an issue for the people
+	: coming to this site)
+	:
+	: it seems we've been getting a few questions recently about merging
+	: different primer sets. Will have to think about what is the right way to
+	: handle this. Perhaps by considering how to do this with our shotgun data
+	: will give some insight? I suppose this depends on whether they want to
+	: treat the samples of the same specimen sequenced with different primers as
+	: the same sample, or as different samples. I will probably recommend that
+	: they treat them as different samples (which is correct), but then I'm
+	: guessing some will want to combine them. 
+	:
+	: A problem is they will have different read depths and even if they did,
+	: they weren't sequenced together. I'm not sure if there are any cases where
+	: combining them makes sense, or how it should be done. E.g., one could
+	: normalize to the same read depth, and that would kind of almost be ok but
+	: I think not really b/c of the compositionality
+	:
+	: e.g.'s trying to do this
+	: https://github.com/joey711/phyloseq/issues/1084
+	:
+	: another relevant e.g. request: https://github.com/benjjneb/dada2/issues/745
+trees and tree plotting
+	https://github.com/joey711/phyloseq/issues/1081
+		: this issue relates to how OTUs are labeled from dada2; but pointed to my
+		: req to rename and store the sequences
+	future maybe: a ggtree tutorial
