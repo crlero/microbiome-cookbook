@@ -1,0 +1,12 @@
+name = "Cookbook"
+license = "MIT"
+licenselink = ""
+description = "Based on Robert Austin's Hugo Whisper Theme (https://github.com/jugglerx/hugo-whisper-theme)"
+homepage = ""
+tags = ["documentation","responsive","minimal","clean"]
+features = ["docs"]
+min_version = 0.55
+
+[author]
+  name = "Michael McLaren"
+  homepage = "https://github.com/mikemc"
