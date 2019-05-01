@@ -1,0 +1,43 @@
+baseURL = "https://microbiome-cookbook.netlify.com"
+languageCode = "en-us"
+title = "The R Microbiome Cookbook"
+# theme = "hugo-whisper-theme"
+theme = "cookbook"
+
+ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
+
+pygmentsCodeFences = true
+pygmentsCodefencesGuessSyntax = true
+pygmentsUseClasses = true
+
+[[menu.main]]
+    name = "Home"
+    url = "/"
+    weight = 1
+
+[[menu.main]]
+    name = "Recipes"
+    url = "/recipes/"
+    weight = 2
+
+[params]
+  google_analytics_id=""
+  homepage_button_link = '/recipes/'
+  homepage_button_text = 'Start cooking'
+  homepage_intro = ""
+  homepage_image = ""
+
+  [params.homepage_meta_tags]
+    meta_description = "Recipes for microbiome analysis in R."
+    meta_og_title = "The R Microbiome Cookbook"
+    meta_og_type = "website"
+    meta_og_url = "https://microbiome-cookbook.netlify.com"
+    # meta_og_image = ""
+    meta_og_description = "Recipes for microbiome analysis in R."
+    meta_twitter_card = "summary"
+    meta_twitter_site = "@mikemc423"
+    meta_twitter_creator = "@mikemc423"
+
+  [params.logo]
+      mobile = "/images/logo-mobile.svg"
+      standard  = "/images/logo.svg"
